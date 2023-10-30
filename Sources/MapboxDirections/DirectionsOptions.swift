@@ -265,6 +265,7 @@ open class DirectionsOptions: Codable {
         }
     }
     
+    //route/v1/driving/100.576363,13.749989;100.565758,13.757685?overview=false&alternatives=true&steps=true&hints=;
     
     private enum CodingKeys: String, CodingKey {
         case waypoints
@@ -461,6 +462,8 @@ open class DirectionsOptions: Codable {
      The query items are included in the URL of a GET request or the body of a POST request.
      */
     open var urlQueryItems: [URLQueryItem] {
+   
+        /*
         var queryItems: [URLQueryItem] = [
             URLQueryItem(name: "geometries", value: shapeFormat.rawValue),
             URLQueryItem(name: "overview", value: routeShapeResolution.rawValue),
@@ -513,6 +516,27 @@ open class DirectionsOptions: Codable {
         if let staticClosureSnapping = self.staticClosureSnapping {
             queryItems.append(URLQueryItem(name: "snapping_include_static_closures", value: staticClosureSnapping))
         }
+        
+        return queryItems
+         
+        */
+        
+        //AE
+        
+        var checkpoint = ";"
+        
+        for _ in 2..<self.waypoints.count {
+            checkpoint += ";"
+        }
+        
+        var queryItems: [URLQueryItem] = [
+            //URLQueryItem(name: "overview", value: "false"),
+            URLQueryItem(name: "alternatives", value: "true"),
+            URLQueryItem(name: "geometries", value: "polyline"),
+            
+            URLQueryItem(name: "steps", value: "true"),
+            URLQueryItem(name: "hints", value: checkpoint)
+        ]
         
         return queryItems
     }

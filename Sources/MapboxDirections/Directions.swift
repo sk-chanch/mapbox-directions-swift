@@ -162,7 +162,12 @@ open class Directions: NSObject {
                         return
                     }
                     
+                    //print("data via \(data):")
+                    
                     let result = try decoder.decode(RouteResponse.self, from: data)
+                    
+                   
+                    
                     guard result.routes != nil else {
                         DispatchQueue.main.async {
                             completionHandler(session, .failure(.unableToRoute))
@@ -539,7 +544,9 @@ open class Directions: NSObject {
     open func url(forCalculating options: DirectionsOptions, httpMethod: String) -> URL {
         let includesQuery = httpMethod != "POST"
         var params = (includesQuery ? options.urlQueryItems : [])
-        params.append(contentsOf: authenticationParams)
+        
+        //AE  append access token at the end
+        //params.append(contentsOf: authenticationParams)
 
         let unparameterizedURL = URL(path: includesQuery ? options.path : options.abridgedPath, host: credentials.host)
         var components = URLComponents(url: unparameterizedURL, resolvingAgainstBaseURL: true)!

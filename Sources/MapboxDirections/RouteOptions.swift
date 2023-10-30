@@ -255,7 +255,9 @@ open class RouteOptions: DirectionsOptions {
     }
     
     internal override var abridgedPath: String {
-        return "directions/v5/\(profileIdentifier.rawValue)"
+        //return "directions/v5/\(profileIdentifier.rawValue)"
+        return "route/v1/\(profileIdentifier.rawValue)"
+        
     }
     
     // MARK: Influencing the Path of the Route
@@ -415,6 +417,9 @@ open class RouteOptions: DirectionsOptions {
     // MARK: Getting the Request URL
     
     override open var urlQueryItems: [URLQueryItem] {
+        
+        //AE
+        /*
         var params: [URLQueryItem] = [
             URLQueryItem(name: CodingKeys.includesAlternativeRoutes.stringValue, value: includesAlternativeRoutes.queryString),
             URLQueryItem(name: CodingKeys.allowsUTurnAtWaypoint.stringValue, value: (!allowsUTurnAtWaypoint).queryString),
@@ -499,6 +504,10 @@ open class RouteOptions: DirectionsOptions {
         }
         
         return params + super.urlQueryItems
+         
+        */
+        
+        return super.urlQueryItems
     }
     
 }

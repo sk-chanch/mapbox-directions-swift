@@ -43,7 +43,7 @@ public struct SilentWaypoint: Codable, Equatable, ForeignMemberContainer {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(waypointIndex, forKey: .waypointIndex)
         try container.encode(distanceFromStart, forKey: .distanceFromStart)
-        try container.encode(shapeCoordinateIndex, forKey: .shapeCoordinateIndex)
+        //try container.encode(shapeCoordinateIndex, forKey: .shapeCoordinateIndex)
         
         try encodeForeignMembers(notKeyedBy: CodingKeys.self, to: encoder)
     }

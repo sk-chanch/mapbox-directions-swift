@@ -72,13 +72,22 @@ public struct Credentials: Equatable {
      */
     public init(requestURL url: URL) {
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+        
+        
+        
         let accessToken = components?
             .queryItems?
             .first { $0.name == "access_token" }?
             .value
+        
+        
         components?.path = "/"
         components?.queryItems = nil
+        
+         
         self.init(accessToken: accessToken, host: components?.url)
+         
+        
     }
 }
 

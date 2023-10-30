@@ -648,9 +648,11 @@ open class RouteStep: Codable, ForeignMemberContainerClass {
     /// Used to Decode `Intersection.geometry_index`
     private struct IntersectionShapeIndex: Codable {
         
+        
         private enum CodingKeys: String, CodingKey {
             case geometryIndex = "geometry_index"
         }
+        
         
         let geometryIndex: Int?
         

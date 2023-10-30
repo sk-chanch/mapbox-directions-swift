@@ -31,6 +31,7 @@ enum PolyLineString {
             self = .lineString(lineString)
         case .polyline, .polyline6:
             let precision = shapeFormat == .polyline6 ? 1e6 : 1e5
+
             let encodedPolyline = lineString.polylineEncodedString(precision: precision)
             self = .polyline(encodedPolyline, precision: precision)
         }
@@ -46,7 +47,9 @@ extension PolyLineString: Codable {
             self = .lineString(try container.decode(LineString.self))
         case .polyline, .polyline6:
             let precision = options?.shapeFormat == .polyline6 ? 1e6 : 1e5
+
             let encodedPolyline = try container.decode(String.self)
+            
             self = .polyline(encodedPolyline, precision: precision)
         }
     }

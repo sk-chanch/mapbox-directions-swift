@@ -15,7 +15,8 @@ public struct ProfileIdentifier: Codable, Hashable, RawRepresentable {
     
     This profile prioritizes fast routes by preferring high-speed roads like highways. A driving route may use a ferry where necessary.
     */
-    public static let automobile: ProfileIdentifier = .init(rawValue: "mapbox/driving")
+    //public static let automobile: ProfileIdentifier = .init(rawValue: "mapbox/driving")
+    public static let automobile: ProfileIdentifier = .init(rawValue: "driving")
     
     /**
     The returned directions are appropriate for driving or riding a car, truck, or motorcycle.

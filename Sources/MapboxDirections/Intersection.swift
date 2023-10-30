@@ -378,9 +378,11 @@ extension Intersection: Codable {
             try container.encode(adminIndex, forKey: .administrativeRegionIndex)
         }
         
+        
         if let geoIndex = geometryIndex {
             try container.encode(geoIndex, forKey: .geometryIndex)
         }
+        
         
         if let railwayCrossing = railroadCrossing {
             try container.encode(railwayCrossing, forKey: .railroadCrossing)

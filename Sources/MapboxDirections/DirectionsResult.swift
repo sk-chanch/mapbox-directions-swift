@@ -29,10 +29,20 @@ open class DirectionsResult: Codable, ForeignMemberContainerClass {
         self.expectedTravelTime = expectedTravelTime
         self.typicalTravelTime = typicalTravelTime
         self.responseContainsSpeechLocale = false
+        
+        
     }
     
+    
+    
     public required init(from decoder: Decoder) throws {
+        
+        //AE
+        
         let container = try decoder.container(keyedBy: CodingKeys.self)
+    
+        
+        print("container.allKeys via \(container.allKeys):")
         
         guard let options = decoder.userInfo[.options] else {
             throw DirectionsCodingError.missingOptions
@@ -52,12 +62,17 @@ open class DirectionsResult: Codable, ForeignMemberContainerClass {
         expectedTravelTime = try container.decode(TimeInterval.self, forKey: .expectedTravelTime)
         typicalTravelTime = try container.decodeIfPresent(TimeInterval.self, forKey: .typicalTravelTime)
     
+        
         if let polyLineString = try container.decodeIfPresent(PolyLineString.self, forKey: .shape) {
+           
             shape = try LineString(polyLineString: polyLineString)
+            
             
         } else {
             shape = nil
         }
+        
+        
         
         if let identifier = try container.decodeIfPresent(String.self, forKey: .speechLocale) {
             speechLocale = Locale(identifier: identifier)
@@ -133,7 +148,7 @@ open class DirectionsResult: Codable, ForeignMemberContainerClass {
      
      The value of this property accounts for the distance that the user must travel to traverse the path of the route. It is the sum of the `distance` properties of the route’s legs, not the sum of the direct distances between the route’s waypoints. You should not assume that the user would travel along this distance at a fixed speed.
      */
-    public let distance: Turf.LocationDistance
+    public var distance: Turf.LocationDistance
     
     /**
      The route’s expected travel time, measured in seconds.
